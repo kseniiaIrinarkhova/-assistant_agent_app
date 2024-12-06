@@ -18,6 +18,20 @@ st.title('Assistant Agent')
 st.markdown("Assistant Agent Powered by Groq.")
 st.markdown("### Help researchers gather insights from academic papers, extract summaries, and identify key references.")
 
+#Prompt
+prompt = """
+    You are a helpful AI assistant. Your job is to analyze the provided research paper data, to generate insights. Provide:
+
+    1. A summary of the paper.
+    2. Insights from the academic paper.
+    3. Identify key references.
+
+    Input variables:
+    - {paper_data}
+    """
+prompt_template = ChatPromptTemplate([('system',prompt)])
+chain = prompt_template | llm | parser
+
 # Data collection
 with st.form("paper_research", clear_on_submit=True):
     # Get the URL of the paper
@@ -31,4 +45,8 @@ with st.form("paper_research", clear_on_submit=True):
             st.spinner("Analyzing the paper...")
             # Get the paper insights
             paper_data = search.invoke(paper_url)
-            print(paper_data)
+            # print(paper_data)
+           
+            paper_insights = chain.invoke({'paper_data': paper_data})
+
+st.markdown(paper_insights)
