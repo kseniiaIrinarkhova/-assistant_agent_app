@@ -17,3 +17,11 @@ search = TavilySearchResults(max_results=2)
 st.title('Assistant Agent')
 st.markdown("Assistant Agent Powered by Groq.")
 st.markdown("### Help researchers gather insights from academic papers, extract summaries, and identify key references.")
+
+# Data collection
+with st.form("paper_research", clear_on_submit=True):
+    # Get the URL of the paper
+    paper_url = st.text_input("Enter the URL of the paper you want to analyze")
+    # Get the research question
+    submit_button = st.form_submit_button(label='Analyze')
+
