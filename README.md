@@ -1,5 +1,7 @@
 # Assistant Agent App
 
+Assiatant Agent for analysis of information, provided by URL.
+Agent uses LangChain for chaining command, Groq for connection to LLM, and Tavily for url search.
 
 
 ## Project content
